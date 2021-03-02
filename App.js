@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
-import { NativeEventEmitter, NativeModules } from 'react-native';
-
 
 export default class App extends Component<Props> {
 
@@ -17,15 +15,11 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableWithoutFeedback onPress={this.login}>
-          <View style={styles.button}>
-            <Text style={styles.content}>Start</Text>
-          </View>
-        </TouchableWithoutFeedback>
       </View>
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {
