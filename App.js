@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
+import { Appbar } from 'react-native-paper';
+import { Provider as PaperProvider } from 'react-native-paper';
 
 export default class App extends Component<Props> {
 
@@ -13,34 +15,40 @@ export default class App extends Component<Props> {
   }
 
   render() {
+    const _plus = () => console.log('plus click!!');
+
     return (
+      <PaperProvider>
       <View style={styles.container}>
+        <Appbar.Header style={styles.header}>
+          <Appbar.Content style={styles.title} titleStyle={{fontWeight: "bold"}} title="남은거" />
+          <Appbar.Action icon="plus" onPress={_plus} />
+          <Appbar.Action icon="ticket-confirmation-outline" onPress={_plus} />
+        </Appbar.Header>
       </View>
+      </PaperProvider>
     );
   }
-}
 
+}
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#ffffff',
   },
-  button: {
-    paddingVertical: 24,
-    paddingHorizontal: 16,
-    backgroundColor: '#6200EE',
-    borderRadius: 5,
+  header: {
+    position: 'absolute',
+    top: 30,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
-  content: {
-    fontSize: 24,
-    color: 'white',
-  },
-  user: {
-    fontSize: 15,
-    color: 'black',
-    alignItems: 'center'
+  title:{
+    fontSize: 17,
+    fontWeight: "bold",
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 28
   }
 });
