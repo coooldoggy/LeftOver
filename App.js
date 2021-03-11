@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
 import { Appbar } from 'react-native-paper';
 import { Provider as PaperProvider } from 'react-native-paper';
+import CalendarView from './Calendar.js'
 
 export default class App extends Component<Props> {
 
@@ -25,6 +26,7 @@ export default class App extends Component<Props> {
             <Appbar.Action icon="plus" onPress={_plus} />
             <Appbar.Action icon="ticket-confirmation-outline" onPress={_plus} />
           </Appbar.Header>
+          <CalendarView />
         </View>
       </PaperProvider>
     );
