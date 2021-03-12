@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
 import { Appbar } from 'react-native-paper';
 import { Provider as PaperProvider } from 'react-native-paper';
