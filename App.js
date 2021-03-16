@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Modal, TouchableHighlight, Dimensions } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
 import { Appbar } from 'react-native-paper';
 import { Provider as PaperProvider } from 'react-native-paper';
-import CalendarView from './Calendar.js'
+import CalendarView from './view/Calendar.js'
 
 export default class App extends Component<Props> {
 
@@ -15,8 +15,17 @@ export default class App extends Component<Props> {
     SplashScreen.hide();
   }
 
+  state = {
+    modalVisible: false
+  };
+
+  setModalVisible(visible) {
+    this.setState({ modalVisible: visible });
+  }
+
+
   render() {
-    const _plus = () => console.log('plus click!!');
+    const _plus = () => this.setModalVisible(!this.state.modalVisible);
 
     return (
       <PaperProvider>
@@ -27,6 +36,23 @@ export default class App extends Component<Props> {
             <Appbar.Action icon="ticket-confirmation-outline" onPress={_plus} />
           </Appbar.Header>
           <CalendarView />
+          <Modal animationType="slide"
+            transparent={true}
+            visible={this.state.modalVisible}
+            onRequestClose={() => { }}>
+            <View style={styles.newticket}>
+              <View style={styles.popback}>
+                <Text>Hello World!</Text>
+
+                <TouchableHighlight
+                  onPress={() => {
+                    this.setModalVisible(!this.state.modalVisible);
+                  }}>
+                  <Text>Hide Modal</Text>
+                </TouchableHighlight>
+              </View>
+            </View>
+          </Modal>
         </View>
       </PaperProvider>
     );
@@ -45,5 +71,16 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'center',
     marginRight: 28
+  },
+  newticket: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+    margin: 0,
+  },
+  popback: {
+    backgroundColor: '#ffffff',
+    height: Dimensions.get('window').height * 0.5,
+    width: Dimensions.get('window').height * 0.3,
   }
 });
