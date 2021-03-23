@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Modal, TouchableHighlight, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight, Dimensions } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
 import { Appbar } from 'react-native-paper';
 import { Provider as PaperProvider } from 'react-native-paper';
@@ -15,17 +15,9 @@ export default class App extends Component<Props> {
     SplashScreen.hide();
   }
 
-  state = {
-    modalVisible: false
-  };
-
-  setModalVisible(visible) {
-    this.setState({ modalVisible: visible });
-  }
-
-
   render() {
-    const _plus = () => this.setModalVisible(!this.state.modalVisible);
+    const _plus = () => console.log("");
+    const _newTicket = () => console.log("");
 
     return (
       <PaperProvider>
@@ -33,26 +25,9 @@ export default class App extends Component<Props> {
           <Appbar.Header style={styles.header}>
             <Appbar.Content style={styles.title} titleStyle={{ fontWeight: "bold" }} title="남은거" />
             <Appbar.Action icon="plus" onPress={_plus} />
-            <Appbar.Action icon="ticket-confirmation-outline" onPress={_plus} />
+            <Appbar.Action icon="ticket-confirmation-outline" onPress={_newTicket} />
           </Appbar.Header>
           <CalendarView />
-          <Modal animationType="slide"
-            transparent={true}
-            visible={this.state.modalVisible}
-            onRequestClose={() => { }}>
-            <View style={styles.newticket}>
-              <View style={styles.popback}>
-                <Text>Hello World!</Text>
-
-                <TouchableHighlight
-                  onPress={() => {
-                    this.setModalVisible(!this.state.modalVisible);
-                  }}>
-                  <Text>Hide Modal</Text>
-                </TouchableHighlight>
-              </View>
-            </View>
-          </Modal>
         </View>
       </PaperProvider>
     );
@@ -72,15 +47,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginRight: 28
   },
-  newticket: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1,
-    margin: 0,
-  },
-  popback: {
-    backgroundColor: '#ffffff',
-    height: Dimensions.get('window').height * 0.5,
-    width: Dimensions.get('window').height * 0.3,
-  }
 });
