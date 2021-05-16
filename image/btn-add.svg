@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="76" height="76">
+    <defs>
+        <linearGradient id="5levweaihb" x1="0%" x2="0%" y1="100%" y2="0%">
+            <stop offset="0%" stop-color="#975FE7"/>
+            <stop offset="100%" stop-color="#6200EE"/>
+        </linearGradient>
+        <filter id="lt1fbl87va" width="77" height="77" x="-1" y="-1" filterUnits="userSpaceOnUse">
+            <feOffset dx="4" dy="6.928" in="SourceAlpha"/>
+            <feGaussianBlur result="blurOut" stdDeviation="3.162"/>
+            <feFlood flood-color="#000" result="floodOut"/>
+            <feComposite in="floodOut" in2="blurOut" operator="atop"/>
+            <feComponentTransfer>
+                <feFuncA slope=".08" type="linear"/>
+            </feComponentTransfer>
+            <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+    <g filter="url(#lt1fbl87va)">
+        <path fill="#FFF" fill-rule="evenodd" stroke-width="2" d="M33 5c13.807 0 25 11.193 25 25S46.807 55 33 55 8 43.807 8 30 19.193 5 33 5z"/>
+    </g>
+    <path fill="url(#5levweaihb)" fill-rule="evenodd" d="M44 30.917H33.917V41h-1.834V30.917H22v-1.834h10.083V19h1.834v10.083H44v1.834z"/>
+</svg>

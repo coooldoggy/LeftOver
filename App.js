@@ -1,9 +1,32 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Modal, TouchableHighlight, Dimensions } from 'react-native';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { StyleSheet, Text, View, TouchableHighlight, Dimensions } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
 import { Appbar } from 'react-native-paper';
+import { FAB } from 'react-native-paper';
 import { Provider as PaperProvider } from 'react-native-paper';
 import CalendarView from './view/Calendar.js'
+import NewTicket from './view/NewTicket.js';
+
+const Stack = createStackNavigator(LeftOverStack);
+
+const LeftOverStack = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={App}
+        />
+        <Stack.Screen name="Splash" component={SplashScreen}/>
+        <Stack.Screen name="NewTicket" component={NewTicket} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
 
 export default class App extends Component<Props> {
 
@@ -23,46 +46,37 @@ export default class App extends Component<Props> {
     this.setState({ modalVisible: visible });
   }
 
-
   render() {
-    const _plus = () => this.setModalVisible(!this.state.modalVisible);
-
     return (
+      <NavigationContainer>
       <PaperProvider>
         <View style={styles.container}>
           <Appbar.Header style={styles.header}>
+          <Appbar.Action icon={require('./image/icon-hand.png')}/>
             <Appbar.Content style={styles.title} titleStyle={{ fontWeight: "bold" }} title="남은거" />
-            <Appbar.Action icon="plus" onPress={_plus} />
-            <Appbar.Action icon="ticket-confirmation-outline" onPress={_plus} />
+            <Appbar.Action icon="ticket-confirmation-outline"/>
           </Appbar.Header>
           <CalendarView />
-          <Modal animationType="slide"
-            transparent={true}
-            visible={this.state.modalVisible}
-            onRequestClose={() => { }}>
-            <View style={styles.newticket}>
-              <View style={styles.popback}>
-                <Text>Hello World!</Text>
-
-                <TouchableHighlight
-                  onPress={() => {
-                    this.setModalVisible(!this.state.modalVisible);
-                  }}>
-                  <Text>Hide Modal</Text>
-                </TouchableHighlight>
-              </View>
-            </View>
-          </Modal>
+          <View>
+          </View>
+          <FAB style={styles.fab} icon={require('./image/icon-add.png')} onPress={
+            () => navigation.navigate('NewTicket')
+          }/>
         </View>
       </PaperProvider>
+      </NavigationContainer>
     );
   }
-
 }
 
+
 const styles = StyleSheet.create({
+  header:{
+    backgroundColor: '#ffffff',
+  },
   container: {
     backgroundColor: '#ffffff',
+    flex: 1
   },
   title: {
     fontSize: 17,
@@ -72,15 +86,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginRight: 28
   },
-  newticket: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1,
-    margin: 0,
-  },
-  popback: {
+  fab: {
     backgroundColor: '#ffffff',
-    height: Dimensions.get('window').height * 0.5,
-    width: Dimensions.get('window').height * 0.3,
+    width: 50,  
+    height: 50,   
+    alignItems: 'center',
+    alignSelf: 'flex-end',
+    marginRight: 16,
+    bottom: 0,
   }
 });
