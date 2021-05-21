@@ -1,15 +1,25 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Appbar } from 'react-native-paper';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import AvailableTicket from './AvailableTicket.js'
+import UsedTicket from './UsedTicket.js'
 
-const NewTicket = () => {
+const Tab = createMaterialTopTabNavigator();
+
+function NewTicket(props) {
+    const { navigation } = props
+
     return (
         <View>
             <Appbar.Header style={styles.header}>
-                <Appbar.BackAction onPress={() => { }} />
-                <Appbar.Content style={styles.title} titleStyle={{ fontWeight: "bold" }} title="이용권 등록" />
-                <Appbar.Content style={styles.title} title="등록" />
+                <Appbar.BackAction onPress={() => navigation.navigate('Home')} />
+                <Appbar.Content style={styles.title} titleStyle={{ fontWeight: "bold" }} title="이용권" />
             </Appbar.Header>
+            {/* <Tab.Navigator>
+                <Tab.Screen name="사용중" component={AvailableTicket} />
+                <Tab.Screen name="사용완료" component={UsedTicket} />
+            </Tab.Navigator> */}
         </View>
     );
 };
@@ -22,7 +32,7 @@ const styles = StyleSheet.create({
         fontSize: 17,
         fontWeight: "bold",
         flex: 1,
-        alignItems: 'flex-start',
+        alignItems: 'center',
         justifyContent: 'center',
         marginRight: 28
     },
